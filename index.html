@@ -1,0 +1,76 @@
+<!-- Aaron Gunderson -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="app.js"></script> -->
+</head>
+<body>
+
+<form id="math-form">
+<input type="number" min="0"   name="num" oninput="validity.valid||(value='')">
+<h1></h1>
+<input type="number" min="0"   name="num" oninput="validity.valid||(value='')">
+<h1></h1>
+<input type="number" min="0"   name="num" oninput="validity.valid||(value='')">
+<h1></h1>
+<button type="submit" value="submit" form="math-form">Submit</button>
+<!-- <input type="submit" value="Submit">
+<input type="reset">
+<h1></h1> -->
+</form>
+<p id="log"></p>
+
+
+
+<script>
+
+  const form = document.getElementById('math-form');
+  const log = document.getElementById('log');
+  const arr = document.getElementsByName("num");
+   
+
+  form.addEventListener('submit', (event) => {  
+   let values = Array.from(arr)
+   let tot = 0;
+   let avg = 0;
+  
+    for (var i =0; i < arr.length; i++){
+        if (parseInt(arr[i].value)){
+            tot += parseInt(arr[i].value)
+        }
+    }
+    
+ avg = tot/arr.length;
+
+
+
+ function median(){
+    
+    values.sort(function(a,b){
+      return a.value-b.value;
+    });
+  
+    var half = Math.floor(values.length / 2);
+    
+    if (values.length % 2)
+      return values[half];
+    
+    return (values[half - 1] + values[half]) / 2.0;
+  }
+
+
+  log.textContent = `Average is ${avg}, median is ${median().value}`
+    event.preventDefault();
+    
+  })
+
+</script>
+
+</body>
+</html>
